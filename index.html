@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- <script type="text/javascript" src="react.development.js"></script>
+    <script type="text/javascript" src="react-dom.development.js"></script>
+    <script type="text/javascript" src="babel.min.js"></script> -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div id="mydiv"></div>
+
+    <script type="text/babel">
+      class Timer extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {date: new Date()};
+        }
+        render() {
+          return (
+          <div>
+            <h1>Hello, world</h1>
+            <p>{this.state.date.toLocaleTimeString()}</p>
+          </div>);
+        }
+        componentDidMount() {
+          this.timerID = setInterval(() => this.tick(), 1000);
+        }
+        tick() {
+          this.setState({date: new Date()});
+        }
+        componentWillUnmount() {
+          clearInterval(this.timerID);
+        }
+      }
+
+      ReactDOM.render(<Timer />, document.getElementById('mydiv'))
+    </script>
+
+  </body>
+</html>
